@@ -1,0 +1,26 @@
+{
+  "name": "shortage-map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoAda/shortage-map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoAda/shortage-map/issues"
+  },
+  "homepage": "https://github.com/LeoAda/shortage-map#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
+    "jquery": "^3.6.0",
+    "nodemon": "^2.0.16"
+  }
+}

@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <p>Welcome to shortage map</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <object id="map" data="map.svg"></object>
+        </div>
+        <div class="col-4">
+          <div class="top-text">
+            <p>Land name :</p>
+            <div id="landName"></div>
+          </div>
+          <div class="top-text">
+            <p>Selected land :</p>
+            <div id="selectedLand"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+      integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    const objectMap = document.getElementById("map");
+    const displayerElement = document.getElementById("landName");
+    const globalLanguage = "fr";
+    var selectedCountry = "";
+    //Wait for the svg map to load in the <object>
+    objectMap.addEventListener("load", function () {
+      inliningSVG(objectMap);
+      injectingOnPath("land");  
+    });
+    function onLandClick(landName) {
+      //Display the name of the land on click
+      document.getElementById("selectedLand").innerHTML =
+        displayNameCountry(landName);
+      selectedCountry = landName;
+      const element = document.getElementById(landName);
+    }
+    function onLandOver(landName) {
+      //Display the name of the land on mouseover
+      document.getElementById("landName").innerHTML =
+        displayNameCountry(landName);
+    }
+    function inliningSVG(object) {
+      //Replace <object> with <svg> that is inside the #document
+      object.parentElement.replaceChild(
+        object.contentDocument.documentElement.cloneNode(true),
+        object
+      );
+    }
+    function injectingOnPath(className) {
+      //Get all the elements with the className
+      const elements = document.getElementsByClassName(className);
+      //Loop through all the elements
+      for (let i = 0; i < elements.length; i++) {
+        //Add a listener to the element
+        elements[i].addEventListener("mouseover", function () {
+          //Get the element id from the element
+          const elementId = elements[i].getAttribute("id");
+          //Set the element id to the onLandOver function
+          onLandOver(elementId);
+        });
+        elements[i].addEventListener("click", function () {
+          //Get the element id from the element
+          const elementId = elements[i].getAttribute("id");
+          //Set the element id to the onLandClick function
+          onLandClick(elementId);
+        });
+      }
+    }
+    function displayNameCountry(countryCode) {
+      //Get the country name from the countryCode
+      const country = countryCode.toUpperCase();
+      const language = globalLanguage.toLowerCase();
+      let regionNames = new Intl.DisplayNames([language], { type: "region" });
+      return regionNames.of(country);
+    }
+    function resizeSvg(width, height) {
+      //Resize the svg map
+      const svg = document.getElementsByTagName("svg")[0];
+      svg.setAttribute("width", width);
+      svg.setAttribute("height", height);
+    }
+  </script>
+</html>

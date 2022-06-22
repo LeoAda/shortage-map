@@ -1,0 +1,17 @@
+p {
+    color: #ec008c;
+}
+/*
+Don't modify the land but the path to change country
+*/
+path:hover, g:hover {
+    fill: #040275 !important;
+}
+
+.top-text p, .top-text div{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ec008c;
+    display: inline;
+    margin: 1;
+}

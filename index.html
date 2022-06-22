@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    
+    <title>Shortage map</title>
+  </head>
+  <body>
+    <h1>Welcome to shortage map</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="input-group mb-3">
+            <label for="reference-country" class="input-group-text"
+              >Reference country</label
+            >
+            <select class="form-select" id="reference-country">
+              <option value="">Select a country</option>
+              <option value="world">World</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label for="target-country" class="input-group-text"
+              >Target country</label
+            >
+            <select class="form-select" id="target-country">
+              <option value="">Select a country</option>
+              <option value="world">World</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+          <button class="btn btn-primary" id="submit-button">Submit</button>
+
+          </div>
+        </div>
+        <div class="col-8"></div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="script.js"></script>
+</html>
